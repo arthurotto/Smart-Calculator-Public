@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.67">
+    <title>Smart Calculator!!</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script lang="javascript" src="smart_calculator.js"></script>
+    <link rel="stylesheet" href='style.css'></style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="box_forca" id = "forca" style="display: none;">
+        <form  action="">
+            <fieldset id="field">
+                <legend><b>Configurações</b></legend>
+                <br>
+                <br>
+                <div class="inputBox1">
+                    <label for="power" id="powerlabel">Power</label>
+                    <input type="text1" name="power" id="power" value="37" >   
+                </div>
+                <div class="inputBox2">   
+                    <label for="ring" id="ringlabel">Ring</label>
+                    <input type="text1" name="ring" id="ring" value="6">
+                </div>
+                <div hidden class="inputBox3">              
+                    <label for="mascot" id="mascotlabel">Mascot</label>
+                    <input type="text1" name="mascot" id="mascot" value="0" >
+                </div>
+                <div class="inputBox4">                    
+                    <label for="pippin" id="pippinlabel">Pippin</label>
+                    <input type="text1" name="pippin" id="pippin" value="0" >
+                </div>
+                <div class="inputBox5">                   
+                    <label for="lolo" id="lololabel">Lolo</label>
+                    <input type="text1" name="lolo" id="lolo" value="6" >
+                </div>
+                <div class="inputBox6" id="drivecheck">                   
+                    <input class="output" type="text" readonly name="current_drive" id="current_drive" text style="color: rgb(27, 168, 233);">
+                </div>
+                <div class="resolucao">                    
+                    <label id = "res" for="resolucao">Resolução:</label>
+                    <select name="resolucao" id="resolucao">
+                <option selected value="1.25">800x600</option>
+                <option value="1.600001">1024x768</option>
+                <option value="1.5">1280x720</option>
+                <option value="1.600002">1366x768</option>
+                <option value="1.872000001">1400x900</option>
+                <option value="1.87200002">1440x900</option>
+                <option value="1.87200003">1600x900</option>
+                <option value="1">PIG PB</option>
+                </select>
+                </div>
+                <input  id = "submit" type="button" value = "Salvar" onclick="salvar()"/>
+                <div class="inputBox5">                   
+                    <label for="spinbase" id="spinbaselabel">Spin</label>
+                    <input type="text1" name="spinbase" id="spinbase" value=30>
+                </div>
+                <div class="inputBox5">                   
+                    <label for="curvabase" id="curvabaselabel">Curva</label>
+                    <input type="text1" name="curvabase" id="curvabase" value=30>
+                </div>
+                <div class="inputBox">                   
+                    <label for="spincut" id="labelspin">Spincut</label>
+                    <select class="input" id="spincut" onchange="calc()">
+						<option selected value="1.0">1.0</option>
+						<option value="0.5">0.5</option>
+						<option value="0.25">0.25</option>
+					</select>
+                </div>
+                <div class="inputBox">                   
+                    <label for="auto-cut" id="labelcut">Auto-cut</label>
+                    <select name="autocut" id="autocut">
+						<option value="0">No Cut</option>
+						<option selected value="1">Back Spin</option>
+						<option value="-1">Front Spin</option>
+                    </select>
+                </div>
+                </fieldset>
+        </form>
+    </div>
+        <div class="box_tacada">
+        <form action="">
+            <fieldset id="fieldtacada">
+                <legend><b>Configure a tacada</b></legend>
+                <br>
+                <div>
+                <label for="taco">Taco:</label>
+
+                <select name="taco" id="taco">
+                <option value="_1W">1W</option>
+                <option value="_2W">2W</option>
+                <option value="_3W">3W</option>
+                <option value="_2I">2I</option>
+                <option value="_3I">3I</option>
+                <option value="_4I">4I</option>
+                <option value="_5I">5I</option>
+                <option value="_6I">6I</option>
+                <option value="_7I">7I</option>
+                <option value="_8I">8I</option>
+                <option value="_9I">9I</option>
+                <option value="PW">PW</option>
+                <option value="SW">SW</option>
+                <option value="PT1">PT1</option>
+                <option value="PT2">PT2</option>
+                </select>
+                </div>
+                <div>
+                <label for="ps">PS:</label>
+
+                <select name="ps" id="ps">
+                <option value="NO_POWER_SHOT">Sem PS</option>
+                <option value="ONE_POWER_SHOT">1 PS</option>
+                <option value="TWO_POWER_SHOT">2 PS</option>
+                <option value="ITEM_15_POWER_SHOT">Item 15 PS</option>
+                </select>
+                </div>
+                <div>
+                <label for="tacada">Shot:</label>
+
+                <select name="tacada" id="tacada">
+                <option value="DUNK">Dunk</option>
+                <option value="TOMAHAWK">Toma</option>
+                <option value="SPIKE">Spike</option>
+                <option value="COBRA">Cobra</option>
+                </select>
+                <input  id = "hide" type="button" value = "Show/Hide" onclick="toggle('forca');"/>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="box_input">
+        <form action="">
+            <fieldset id="fieldinput">
+                <legend><b>Input de dados</b></legend>
+                <br>
+                <div class="inputBox">
+                    <label for="distancia">Distancia</label>
+                    <input type="text" name="distancia" id="distancia">     
+                </div>
+                <div class="inputBox">   
+                    <label for="altura">Altura</label>
+                    <input type="text" name="altura" id="altura" onchange="calc()">
+                </div>
+                <div class="inputBox">              
+                    <label for="vento">Vento</label>
+                    <input type="text" name="vento" id="vento" onchange="calc()">
+                </div>
+                <div class="inputBox">                    
+                    <label for="angulo">Angulo</label>
+                    <input type="text" name="angulo" id="angulo" onchange="calc()">
+                </div>
+                <div class="box_angulo">   
+                    <form action=""> 
+                        <fieldset id="a1">    
+                            <input  id = "a2" type="button" value="◤" onclick="anglecalc1()"/>
+            
+                            <input  id = "a2" type="button" value="◥" onclick="anglecalc4()"/>
+            
+                            <input  id = "a2" type="button" value="◣" onclick="anglecalc2()"/>
+            
+                            <input  id = "a2" type="button" value="◢" onclick="anglecalc3()"/>
+                        </fieldset>
+                     </form>
+                 </div>
+                <div class="inputBox">                   
+                    <label id="tr" for="terreno">Terreno</label>
+                    <input type="text" name="terreno" id="terreno" value=100 onchange="calc()">
+                </div>
+                <div class="inputBox">                   
+                    <label for="spin">Spin</label>
+                    <input type="text" name="spin" id="spin">
+                </div>
+                <div class="inputBox">                   
+                    <label for="curva">Curva</label>
+                    <input type="text" name="curva" id="curva" onchange="calc()">
+                </div>
+                <div class="inputBox">                   
+                    <label for="quebra">Quebra</label>
+                    <input type="text" name="quebra" id="quebra" value="0" onchange="calc()">
+                </div>
+            </fieldset>
+        </form>
+    <div class="box_resultados">
+        <form action="">
+                <fieldset id="fieldresultados">
+                    <br>
+                    <legend><b>Resultados</b></legend>
+                    <div class="inputBox12"> 
+                        <input type="text2" name="mirapb" id="labelmira" readonly>
+                        <input type="text2" name="resaim" id="resaim" readonly>
+                    </div>
+                    <div class="inputBox11"> 
+                        <label id = "b1" for="calliper">Calliper</label>
+                        <input type="text2" name="rescal" id="rescal" readonly>
+                    </div> 
+                    <div hidden class="inputBox10">      
+                        <label id = "b1" for="power%">Power %</label> 
+                        <input type="text2" name="respow" id="respow" readonly>
+                    </div> 
+                    <div hidden class="inputBox13"> 
+                        <label id = "b1" for="divisor">Divisor</label>
+                        <input type="text2" name="resaimplus" id="resaimplus" value="1">
+                    </div>
+                    <div class="inputBox14" id="inputerro"> 
+                        <label id = "b1" for="divisor">Erro</label>
+                        <input type="text2" name="erro" id="erro" readonly style="color:white" placeholder="A Tacada Está Ok !">
+                    </div>
+                    <div hidden class="inputBox15"> 
+                        <input type="text" name="err" id="err" readonly>
+                    </div>
+                 </div>
+                </fieldset>
+                <div class="box_quebra">
+                    <form action="">
+                        <fieldset id = "fieldquebra">
+                            <legend><b>Slope Pixel</b></legend>
+                            <br>
+                            <div class="inputBox20">
+                                <label for="pixel">Pixel</label>
+                                <input type="text4" name="pixel" id="pixel" onchange="calc()">     
+                            </div>
+                            <div class="inputBox21">   
+                                <label for="angq">Ang Q</label>
+                                <input type="text4" name="angq" id="angq" onchange="calc()">
+                            </div>
+                            <div class="inputBox22">              
+                                <label for="axis">Align</label>
+                            <div class="box_axis">   
+                                    <form action=""> 
+                                        <fieldset id="a11">    
+                                            <input  id = "a12" type="radio" value="-" name="axis1" onchange="calc()">
+                                            <span id="sp1" ><<</span>
+                                            <input  id = "a13" type="radio" value="+" name="axis1" onchange="calc()">
+                                            <span id="sp2">>></span>
+                                        </fieldset>
+                                                </form>
+
+                            </div>
+                            <div class="inputBox30">              
+                                <label for="axis" id = "side">Side Slope</label>
+                            <div class="box_axis">   
+                                    <form action=""> 
+                                        <fieldset id="a20">    
+                                            <input  id = "a21" type="radio" value="-" name="sidealign" onchange="calc()">
+                                            <span id="sp3" ><<</span>
+                                            <input  id = "a22" type="radio" value="+" name="sidealign" onchange="calc()">
+                                            <span id="sp4">>></span>
+                                        </fieldset>
+                                                </form>
+                            </div>
+                            <div hidden class="inputBox23">                    
+                                <label for="slope1" id="sl" >Slope 1</label>
+                                <input type="text4" name="slope1" id="slope1" readonly onchange="calc()">
+                            </div>
+                            <div hidden class="inputBox24">                   
+                                <label for="slopef" id="sl1" >Slope F</label>
+                                <input type="text4" name="slopef" id="slopef" readonly onchange="calc()"> 
+                            </div>
+                <input class="neon-button" id = "clear" type="button" value = "CLEAR" onclick="resetclear()"/>
+                            <div class="box_distancias">
+                            <fieldset id = "fielddistancias">
+                                <div>
+                                    <select name="mapa" id="map" onchange="distancias()" >
+                                    <option value="Abbot Mine">Abbot Mine</option>
+                                    <option value="Blue Lagoon">Blue Lagoon</option>
+                                    <option value="Blue Moon">Blue Moon</option>
+                                    <option value="Blue Water">Blue Water</option>
+                                    <option value="Deep Inferno">Deep Inferno</option>
+                                    <option value="Eastern Valley">Eastern Valley</option>
+                                    <option value="Ice Cannon">Ice Cannon</option>
+                                    <option value="Ice Inferno">Ice Inferno</option>
+                                    <option value="Ice Spa">Ice Spa</option>
+                                    <option value="Lost Seaway">Lost Seaway</option>
+                                    <option value="Pink Wind">Pink Wind</option>
+                                    <option value="Sepia Wind">Sepia Wind</option>
+                                    <option value="Shining Sand">Shining Sand</option>
+                                    <option value="Silvia Cannon">Silvia Cannon</option>
+                                    <option value="West Wiz">West Wiz</option>
+                                    <option value="White Wiz">White Wiz</option>
+                                    <option value="Wind Hill">Wind Hill</option>
+                                    <option value="Wiz City">Wiz City</option>
+                                    <option value="Wiz Wiz">Wiz Wiz</option>
+                                    </select>
+                                    </div>
+                                    <input id = "inputhole" type="text4" name="hole" onchange="distancias()">     
+                                    <div>
+                                <div class="distancia1">
+                                    <input id = "dist1" type="text4" name="distancias" readonly>
+                                    <input id = "alt1" type="text4" name="alturas" readonly> 
+                                    <input  id = "bot1" type="radio" value="-" name="sidealign" onchange="changevalue1()">
+                                    </div>
+                                <div class="distancia2">
+                                    <input id = "dist2" type="text4" name="distancias" readonly>
+                                    <input id = "alt2" type="text4" name="alturas" readonly>  
+                                    <input  id = "bot2" type="radio" value="-" name="sidealign" onchange="changevalue2()">
+ 
+                                    </div>
+                                <div class="distancia3">
+                                    <input id = "dist3" type="text4" name="distancias" readonly>
+                                    <input id = "alt3" type="text4" name="alturas" readonly>   
+                                    <input  id = "bot3" type="radio" value="-" name="sidealign" onchange="changevalue3()">
+
+                                    </div>
+                            </fieldset>
+</body>
+</html>
