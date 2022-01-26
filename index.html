@@ -11,6 +11,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+
+    <script>
+
+      const { ipcRenderer } = require('electron')
+
+      ipcRenderer.on('asynchronous-message', (e, command) => {
+        console.log('Received asynchronous-message:', command);
+      })
+
+    </script>
 </head>
 <body>
     <div class="box_forca" id = "forca" style="display: none;">
@@ -21,28 +31,28 @@
                 <br>
                 <div class="inputBox1">
                     <label for="power" id="powerlabel">Power</label>
-                    <input type="text1" name="power" id="power" value="37" >   
+                    <input type="text1" name="power" id="power" value="37" >
                 </div>
-                <div class="inputBox2">   
+                <div class="inputBox2">
                     <label for="ring" id="ringlabel">Ring</label>
                     <input type="text1" name="ring" id="ring" value="6">
                 </div>
-                <div hidden class="inputBox3">              
+                <div hidden class="inputBox3">
                     <label for="mascot" id="mascotlabel">Mascot</label>
                     <input type="text1" name="mascot" id="mascot" value="0" >
                 </div>
-                <div class="inputBox4">                    
+                <div class="inputBox4">
                     <label for="pippin" id="pippinlabel">Pippin</label>
                     <input type="text1" name="pippin" id="pippin" value="0" >
                 </div>
-                <div class="inputBox5">                   
+                <div class="inputBox5">
                     <label for="lolo" id="lololabel">Lolo</label>
                     <input type="text1" name="lolo" id="lolo" value="6" >
                 </div>
-                <div class="inputBox6" id="drivecheck">                   
+                <div class="inputBox6" id="drivecheck">
                     <input class="output" type="text" readonly name="current_drive" id="current_drive" text style="color: rgb(27, 168, 233);">
                 </div>
-                <div class="resolucao">                    
+                <div class="resolucao">
                     <label id = "res" for="resolucao">Resolução:</label>
                     <select name="resolucao" id="resolucao">
                 <option selected value="1.25">800x600</option>
@@ -56,15 +66,15 @@
                 </select>
                 </div>
                 <input  id = "submit" type="button" value = "Salvar" onclick="salvar()"/>
-                <div class="inputBox5">                   
+                <div class="inputBox5">
                     <label for="spinbase" id="spinbaselabel">Spin</label>
                     <input type="text1" name="spinbase" id="spinbase" value=30>
                 </div>
-                <div class="inputBox5">                   
+                <div class="inputBox5">
                     <label for="curvabase" id="curvabaselabel">Curva</label>
                     <input type="text1" name="curvabase" id="curvabase" value=30>
                 </div>
-                <div class="inputBox">                   
+                <div class="inputBox">
                     <label for="spincut" id="labelspin">Spincut</label>
                     <select class="input" id="spincut" onchange="calc()">
 						<option selected value="1.0">1.0</option>
@@ -72,7 +82,7 @@
 						<option value="0.25">0.25</option>
 					</select>
                 </div>
-                <div class="inputBox">                   
+                <div class="inputBox">
                     <label for="auto-cut" id="labelcut">Auto-cut</label>
                     <select name="autocut" id="autocut">
 						<option value="0">No Cut</option>
@@ -140,46 +150,46 @@
                 <br>
                 <div class="inputBox">
                     <label for="distancia">Distancia</label>
-                    <input type="text" name="distancia" id="distancia">     
+                    <input type="text" name="distancia" id="distancia">
                 </div>
-                <div class="inputBox">   
+                <div class="inputBox">
                     <label for="altura">Altura</label>
                     <input type="text" name="altura" id="altura" onchange="calc()">
                 </div>
-                <div class="inputBox">              
+                <div class="inputBox">
                     <label for="vento">Vento</label>
                     <input type="text" name="vento" id="vento" onchange="calc()">
                 </div>
-                <div class="inputBox">                    
+                <div class="inputBox">
                     <label for="angulo">Angulo</label>
                     <input type="text" name="angulo" id="angulo" onchange="calc()">
                 </div>
-                <div class="box_angulo">   
-                    <form action=""> 
-                        <fieldset id="a1">    
+                <div class="box_angulo">
+                    <form action="">
+                        <fieldset id="a1">
                             <input  id = "a2" type="button" value="◤" onclick="anglecalc1()"/>
-            
+
                             <input  id = "a2" type="button" value="◥" onclick="anglecalc4()"/>
-            
+
                             <input  id = "a2" type="button" value="◣" onclick="anglecalc2()"/>
-            
+
                             <input  id = "a2" type="button" value="◢" onclick="anglecalc3()"/>
                         </fieldset>
                      </form>
                  </div>
-                <div class="inputBox">                   
+                <div class="inputBox">
                     <label id="tr" for="terreno">Terreno</label>
                     <input type="text" name="terreno" id="terreno" value=100 onchange="calc()">
                 </div>
-                <div class="inputBox">                   
+                <div class="inputBox">
                     <label for="spin">Spin</label>
                     <input type="text" name="spin" id="spin">
                 </div>
-                <div class="inputBox">                   
+                <div class="inputBox">
                     <label for="curva">Curva</label>
                     <input type="text" name="curva" id="curva" onchange="calc()">
                 </div>
-                <div class="inputBox">                   
+                <div class="inputBox">
                     <label for="quebra">Quebra</label>
                     <input type="text" name="quebra" id="quebra" value="0" onchange="calc()">
                 </div>
@@ -190,27 +200,27 @@
                 <fieldset id="fieldresultados">
                     <br>
                     <legend><b>Resultados</b></legend>
-                    <div class="inputBox12"> 
+                    <div class="inputBox12">
                         <input type="text2" name="mirapb" id="labelmira" readonly>
                         <input type="text2" name="resaim" id="resaim" readonly>
                     </div>
-                    <div class="inputBox11"> 
+                    <div class="inputBox11">
                         <label id = "b1" for="calliper">Calliper</label>
                         <input type="text2" name="rescal" id="rescal" readonly>
-                    </div> 
-                    <div hidden class="inputBox10">      
-                        <label id = "b1" for="power%">Power %</label> 
+                    </div>
+                    <div hidden class="inputBox10">
+                        <label id = "b1" for="power%">Power %</label>
                         <input type="text2" name="respow" id="respow" readonly>
-                    </div> 
-                    <div hidden class="inputBox13"> 
+                    </div>
+                    <div hidden class="inputBox13">
                         <label id = "b1" for="divisor">Divisor</label>
                         <input type="text2" name="resaimplus" id="resaimplus" value="1">
                     </div>
-                    <div class="inputBox14" id="inputerro"> 
+                    <div class="inputBox14" id="inputerro">
                         <label id = "b1" for="divisor">Erro</label>
                         <input type="text2" name="erro" id="erro" readonly style="color:white" placeholder="A Tacada Está Ok !">
                     </div>
-                    <div hidden class="inputBox15"> 
+                    <div hidden class="inputBox15">
                         <input type="text" name="err" id="err" readonly>
                     </div>
                  </div>
@@ -222,17 +232,17 @@
                             <br>
                             <div class="inputBox20">
                                 <label for="pixel">Pixel</label>
-                                <input type="text4" name="pixel" id="pixel" onchange="calc()">     
+                                <input type="text4" name="pixel" id="pixel" onchange="calc()">
                             </div>
-                            <div class="inputBox21">   
+                            <div class="inputBox21">
                                 <label for="angq">Ang Q</label>
                                 <input type="text4" name="angq" id="angq" onchange="calc()">
                             </div>
-                            <div class="inputBox22">              
+                            <div class="inputBox22">
                                 <label for="axis">Align</label>
-                            <div class="box_axis">   
-                                    <form action=""> 
-                                        <fieldset id="a11">    
+                            <div class="box_axis">
+                                    <form action="">
+                                        <fieldset id="a11">
                                             <input  id = "a12" type="radio" value="-" name="axis1" onchange="calc()">
                                             <span id="sp1" ><<</span>
                                             <input  id = "a13" type="radio" value="+" name="axis1" onchange="calc()">
@@ -241,11 +251,11 @@
                                                 </form>
 
                             </div>
-                            <div class="inputBox30">              
+                            <div class="inputBox30">
                                 <label for="axis" id = "side">Side Slope</label>
-                            <div class="box_axis">   
-                                    <form action=""> 
-                                        <fieldset id="a20">    
+                            <div class="box_axis">
+                                    <form action="">
+                                        <fieldset id="a20">
                                             <input  id = "a21" type="radio" value="-" name="sidealign" onchange="calc()">
                                             <span id="sp3" ><<</span>
                                             <input  id = "a22" type="radio" value="+" name="sidealign" onchange="calc()">
@@ -253,13 +263,13 @@
                                         </fieldset>
                                                 </form>
                             </div>
-                            <div hidden class="inputBox23">                    
+                            <div hidden class="inputBox23">
                                 <label for="slope1" id="sl" >Slope 1</label>
                                 <input type="text4" name="slope1" id="slope1" readonly onchange="calc()">
                             </div>
-                            <div hidden class="inputBox24">                   
+                            <div hidden class="inputBox24">
                                 <label for="slopef" id="sl1" >Slope F</label>
-                                <input type="text4" name="slopef" id="slopef" readonly onchange="calc()"> 
+                                <input type="text4" name="slopef" id="slopef" readonly onchange="calc()">
                             </div>
                 <input class="neon-button" id = "clear" type="button" value = "CLEAR" onclick="resetclear()"/>
                             <div class="box_distancias">
@@ -287,22 +297,22 @@
                                     <option value="Wiz Wiz">Wiz Wiz</option>
                                     </select>
                                     </div>
-                                    <input id = "inputhole" type="text4" name="hole" onchange="distancias()">     
+                                    <input id = "inputhole" type="text4" name="hole" onchange="distancias()">
                                     <div>
                                 <div class="distancia1">
                                     <input id = "dist1" type="text4" name="distancias" readonly>
-                                    <input id = "alt1" type="text4" name="alturas" readonly> 
+                                    <input id = "alt1" type="text4" name="alturas" readonly>
                                     <input  id = "bot1" type="radio" value="-" name="sidealign" onchange="changevalue1()">
                                     </div>
                                 <div class="distancia2">
                                     <input id = "dist2" type="text4" name="distancias" readonly>
-                                    <input id = "alt2" type="text4" name="alturas" readonly>  
+                                    <input id = "alt2" type="text4" name="alturas" readonly>
                                     <input  id = "bot2" type="radio" value="-" name="sidealign" onchange="changevalue2()">
- 
+
                                     </div>
                                 <div class="distancia3">
                                     <input id = "dist3" type="text4" name="distancias" readonly>
-                                    <input id = "alt3" type="text4" name="alturas" readonly>   
+                                    <input id = "alt3" type="text4" name="alturas" readonly>
                                     <input  id = "bot3" type="radio" value="-" name="sidealign" onchange="changevalue3()">
 
                                     </div>
